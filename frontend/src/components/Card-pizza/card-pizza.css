@@ -1,0 +1,28 @@
+.card-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+.btn1 {
+  width: 100px;
+  height: 40px;
+  font-size: 13px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.btn2 {
+  width: 100px;
+  height: 40px;
+  font-size: 13px;
+  color: white;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.btn1:hover {
+  background-color: rgb(36, 138, 36);
+}
+.btn2:hover {
+  background-color: rgb(36, 138, 36);
+}
