@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { pizzaCart } from "../Card-pizza/pizzas";
+import { pizzaCart } from "../../components/Card-pizza/pizzas";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

@@ -1,5 +1,5 @@
-import Header from "../Header/Header";
-import CardPizza from "../Card-pizza/CardPizza";
+import Header from "../../components/Header/Header";
+import CardPizza from "../../components/Card-pizza/CardPizza";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

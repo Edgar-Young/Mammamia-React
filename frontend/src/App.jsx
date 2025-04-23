@@ -1,20 +1,29 @@
-import Footer from "./components/Footer/Footer";
-import Home from "./components/Home/Home";
-import Loginpage from "./components/Loginpage/Loginpage";
 import Navbar from "./components/Navbar/Navbar";
-import Registerpage from "./components/Registerpage/Registerpage";
-import Cart from "./components/Cart-pizza/Cart";
-import Pizza from "./components/Pizza/Pizza";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Loginpage from "./pages/Loginpage/Loginpage";
+import Registerpage from "./pages/Registerpage/Registerpage";
+import Cart from "./pages/Cart-pizza/Cart";
+import Pizza from "./pages/Pizza/Pizza";
+import Footer from "./components/Footer/Footer";
+import NotFound from "./pages/NotFound/NotFound";
+import Profile from "./pages/Profile/Profile";
 
 const App = () => {
   return (
     <>
       <Navbar />
-      {/* <Home /> */}
-      {/* <Registerpage /> */}
-      {/* <Loginpage /> */}
-      {/* <Cart /> */}
-      <Pizza />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Registerpage />} />
+        <Route path="/login" element={<Loginpage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/pizza/p001" element={<Pizza />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+
       <Footer />
     </>
   );

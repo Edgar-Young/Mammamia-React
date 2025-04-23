@@ -2,6 +2,7 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   const total = 25000;
@@ -11,25 +12,47 @@ const Menu = () => {
     <>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Pizzeria Mamma Mia</Navbar.Brand>
+          <Navbar.Brand href="#Home">Pizzeria Mamma Mia</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">🍕 Home</Nav.Link>
+            <Link to="/" className="text-decoration-none ms-3 text-white">
+              🍕 Home
+            </Link>
             {token ? (
               <>
-                <Nav.Link href="#profile">🔓 Profile</Nav.Link>
-                <Nav.Link href="#logout">🔒 Logout</Nav.Link>
+                <Link
+                  to="/logout"
+                  className="text-decoration-none ms-3 text-white"
+                >
+                  🔒 Logout
+                </Link>
               </>
             ) : (
               <>
-                <Nav.Link href="#login">🔐 Login</Nav.Link>
-                <Nav.Link href="#register">🔐 Register</Nav.Link>
+                <Link
+                  to="/login"
+                  className="text-decoration-none ms-3 text-white"
+                >
+                  🔐 Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="text-decoration-none ms-3 text-white"
+                >
+                  🔐 Register
+                </Link>
+                <Link
+                  to="/profile"
+                  className="text-decoration-none ms-3 text-white"
+                >
+                  🔓 Profile
+                </Link>
               </>
             )}
           </Nav>
           <Nav className="ml-auto">
-            <Nav.Link href="#total" style={{ color: "white" }}>
+            <Link to="/cart" className="text-decoration-none ms-3 text-white">
               🛒 Total: ${total.toLocaleString()}
-            </Nav.Link>
+            </Link>
           </Nav>
         </Container>
       </Navbar>

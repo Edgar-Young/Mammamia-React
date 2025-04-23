@@ -1,0 +1,11 @@
+.error-img {
+  max-width: 600px;
+  width: 100%;
+
+  margin-bottom: 10px;
+}
+.link-lg {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #198754;
+}
