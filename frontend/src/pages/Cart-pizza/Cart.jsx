@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import { pizzaCart } from "../../components/Card-pizza/pizzas";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
@@ -7,33 +8,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
-
-  const incremetar = (id) => {
-    const updatedCart = cart.map((pizza) => {
-      if (pizza.id === id) {
-        return { ...pizza, count: pizza.count + 1 };
-      }
-      return pizza;
-    });
-    setCart(updatedCart);
-  };
-
-  const disminuir = (id) => {
-    const updatedCart = cart
-      .map((pizza) => {
-        if (pizza.id === id && pizza.count > 0) {
-          return { ...pizza, count: pizza.count - 1 };
-        }
-        return pizza;
-      })
-      .filter((pizza) => pizza.count > 0);
-    setCart(updatedCart);
-  };
-
-  const totalPrice = cart.reduce((total, pizza) => {
-    return total + pizza.price * pizza.count;
-  }, 0);
+  const { cart, incremetar, disminuir, totalPrice } = useContext(CartContext);
 
   return (
     <Container className="mt-4 py-5">

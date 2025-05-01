@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const Menu = () => {
-  const total = 25000;
+  const { totalPrice } = useContext(CartContext);
   const token = false;
 
   return (
@@ -51,7 +52,7 @@ const Menu = () => {
           </Nav>
           <Nav className="ml-auto">
             <Link to="/cart" className="text-decoration-none ms-3 text-white">
-              🛒 Total: ${total.toLocaleString()}
+              🛒 Total: ${totalPrice.toLocaleString()}
             </Link>
           </Nav>
         </Container>

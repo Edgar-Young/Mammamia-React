@@ -3,8 +3,18 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./card-pizza.css";
 import { ListGroupItem } from "react-bootstrap";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+// import { useNavigate } from "react-router-dom";
 
-const CardPizza = ({ name, img, ingredients, price }) => {
+const CardPizza = ({ name, img, ingredients, price, id }) => {
+  const { addToCart } = useContext(CartContext);
+  const pizza = { name, ingredients, price, img, id };
+  // const navigate = useNavigate()
+  // const verPizza = () => {
+  //   navigate(`/pizza/${id}`)
+  // }
+
   return (
     <Card style={{ width: "22rem" }}>
       <Card.Img variant="top" src={img} />
@@ -22,8 +32,10 @@ const CardPizza = ({ name, img, ingredients, price }) => {
         <ListGroup.Item className="text-center">Precio: {price}</ListGroup.Item>
       </ListGroup>
       <Card.Body className="card-buttons">
-        <Button class="btn1">Ver mas 👀</Button>
-        <Button class="btn2">Agregar 🛒</Button>
+        <Button variant="outline-info">Ver mas 👀</Button>
+        <Button variant="primary" onClick={() => addToCart(pizza)}>
+          Agregar 🛒
+        </Button>
       </Card.Body>
     </Card>
   );
