@@ -8,46 +8,44 @@ import {
   Row,
   Image,
 } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 const Pizza = () => {
-  const [apipizzas, setApiPizzas] = useState({});
+  const [info, setInfo] = useState({});
+  const { id } = useParams();
 
-  //llamar a la API
-  const getApiPizzas = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/api/pizzas/p001");
-      if (!res.ok) {
-        throw new Error("No se pudo obtener la pizza.");
-      }
-      const data = await res.json();
-      setApiPizzas(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  console.log(useParams());
 
   useEffect(() => {
     getApiPizzas();
-  }, []);
+  }, [id]);
 
-  const { name, desc, price, ingredients, img } = apipizzas;
+  //llamar a la API
+  const getApiPizzas = async () => {
+    const url = `http://localhost:5000/api/pizzas/${id}`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setInfo(data);
+    } catch (error) {
+      console.error("No se pudo establecer conexión con el servidor", error);
+    }
+  };
 
   return (
     <>
       <Container>
         <Row className="my-5">
           <Col md={6}>
-            <Image src={img} rounded />
+            <Image src={info.img} rounded />
           </Col>
           <Col md={6}>
             <Card>
               <Card.Body>
-                <Card.Title className="capitalize">{name}</Card.Title>
-                <Card.Text>{desc}</Card.Text>
+                <Card.Title className="capitalize">{info.name}</Card.Title>
+                <Card.Text>{info.desc}</Card.Text>
                 <Card.Text>
-                  Precio: $ {price?.toLocaleString("es-CL")}
+                  Precio: $ {info.price?.toLocaleString("es-CL")}
                 </Card.Text>
                 <ListGroup
                   className="capitalize"
@@ -55,7 +53,7 @@ const Pizza = () => {
                   as="ol"
                   numbered
                 >
-                  {ingredients?.map((ingrediente, index) => (
+                  {info.ingredients?.map((ingrediente, index) => (
                     <ListGroup.Item key={index}>
                       🍕 {ingrediente}
                     </ListGroup.Item>

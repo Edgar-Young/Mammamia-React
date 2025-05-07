@@ -4,10 +4,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { UserContex } from "../../context/UserContext";
 
 const Menu = () => {
   const { totalPrice } = useContext(CartContext);
-  const token = false;
+  const { token, logout } = useContext(UserContex);
 
   return (
     <>
@@ -21,11 +22,14 @@ const Menu = () => {
             {token ? (
               <>
                 <Link
-                  to="/logout"
+                  to="/profile"
                   className="text-decoration-none ms-3 text-white"
                 >
-                  🔒 Logout
+                  🧑🏽‍💼 Profile
                 </Link>
+                <button className="btn btn-outline-primary" onClick={logout}>
+                  🔒 Logout
+                </button>
               </>
             ) : (
               <>
@@ -40,12 +44,6 @@ const Menu = () => {
                   className="text-decoration-none ms-3 text-white"
                 >
                   🔐 Register
-                </Link>
-                <Link
-                  to="/profile"
-                  className="text-decoration-none ms-3 text-white"
-                >
-                  🔓 Profile
                 </Link>
               </>
             )}

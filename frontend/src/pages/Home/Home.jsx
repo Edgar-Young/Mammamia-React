@@ -6,31 +6,35 @@ import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const [apipizzas, setApiPizzas] = useState([]);
-
-  //llamar a la API
-  const getApiPizzas = async () => {
-    const res = await fetch("http://localhost:5000/api/pizzas");
-    const data = await res.json();
-    setApiPizzas(data);
-  };
+  const [info, setInfo] = useState([]);
 
   useEffect(() => {
     getApiPizzas();
   }, []);
+
+  //llamar a la API
+  const getApiPizzas = async () => {
+    const url = `http://localhost:5000/api/pizzas`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setInfo(data);
+    } catch (error) {
+      console.error("No se pudo establecer conexión con el servidor", error);
+    }
+  };
 
   return (
     <>
       <Header />
       <Container>
         <Row className="py-5">
-          {apipizzas?.map((pizza) => (
+          {info.map((pizza) => (
             <Col key={pizza.id} md={4} className="mb-4">
               <CardPizza
-                key={pizza.id}
+                id={pizza.id}
                 name={pizza.name}
                 img={pizza.img}
-                desc={pizza.desc}
                 ingredients={pizza.ingredients}
                 price={pizza.price}
               />

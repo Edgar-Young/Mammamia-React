@@ -6,9 +6,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { UserContex } from "../../context/UserContext";
 
 const Cart = () => {
   const { cart, incremetar, disminuir, totalPrice } = useContext(CartContext);
+  const { token } = useContext(UserContex);
 
   return (
     <Container className="mt-4 py-5">
@@ -45,9 +47,11 @@ const Cart = () => {
       <Row className="mt-4">
         <Col className="text-center">
           <h3>Total a Pagar: $ {totalPrice.toLocaleString("es-CL")}</h3>
-          <Button variant="success" className="mt-3">
-            Pagar
-          </Button>
+          {token && (
+            <Button variant="success" className="mt-3">
+              Pagar
+            </Button>
+          )}
         </Col>
       </Row>
     </Container>
